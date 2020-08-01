@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,9 +22,9 @@ public class FileWork {
             List<String> inputLines = Files.readAllLines(Paths.get(fileName));
             for (String string : inputLines) {
                 for (String oneWord : string.toLowerCase()
-                        .replaceAll("[^a-z]", " ")
-                        .replaceAll("\\s+", " ")
-                        .split(" ")
+//                        .replaceAll("[^a-z]", " ")
+//                        .replaceAll("\\s+", " ")
+                        .split("[^a-z]+")
                 ) {
                     if (oneWord.charAt(0) == 'w') {
                         resultWords.add(oneWord);
