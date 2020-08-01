@@ -2,10 +2,8 @@ package core.basesyntax;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,37 +16,24 @@ import java.util.List;
  */
 public class FileWork {
     public String[] readFromFile(String fileName) {
-        List<String> inputLines = new ArrayList<>();
-        String[] resultArray = new String[]{};
-
-        try {
-            inputLines = Files.readAllLines(Paths.get(fileName));
-        } catch (IOException e) {
-            return resultArray;
-        }
-
         List<String> resultWords = new ArrayList<>();
-
-        for (String string : inputLines) {
-            string = string.toLowerCase();
-            System.out.println(string);
-            string = string.replaceAll("[^a-z]", " ");
-            string = string.replaceAll("  ", " ");
-            System.out.println(string);
-
-//            List<String> tempList = Arrays.asList(string.split(" "));
-
-            String[] arrayWords = string.split(" ");
-
-            for (String oneWord : arrayWords) {
-                System.out.println(oneWord);
-                if (oneWord.charAt(0) == 'w') {
-                    resultWords.add(oneWord);
+        try {
+            List<String> inputLines = Files.readAllLines(Paths.get(fileName));
+            for (String string : inputLines) {
+                for (String oneWord : string.toLowerCase()
+                        .replaceAll("[^a-z]", " ")
+                        .replaceAll("\\s+", " ")
+                        .split(" ")
+                ) {
+                    if (oneWord.charAt(0) == 'w') {
+                        resultWords.add(oneWord);
+                    }
                 }
             }
-
+        } catch (IOException e) {
+            return new String[]{};
         }
         Collections.sort(resultWords);
-        return resultWords.toArray(resultArray);
+        return resultWords.toArray(new String[]{});
     }
 }
