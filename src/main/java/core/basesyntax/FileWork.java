@@ -31,14 +31,14 @@ public class FileWork {
 
         for (String string : inputLines) {
             string = string.toLowerCase();
-//            System.out.println(string);
-            string = string.replaceAll("[^a-z] | (\\.)", " ");
-//            string = string.replaceAll(" ", ".");
+            System.out.println(string);
+            string = string.replaceAll("[^a-z]", " ");
+            string = string.replaceAll("  ", " ");
             System.out.println(string);
 
 //            List<String> tempList = Arrays.asList(string.split(" "));
 
-            String[] arrayWords = string.split("\\s");
+            String[] arrayWords = string.split(" ");
 
             for (String oneWord : arrayWords) {
                 System.out.println(oneWord);
